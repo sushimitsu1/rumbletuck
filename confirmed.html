@@ -9,13 +9,19 @@
   <h1 id="title" style="color:#fff">You're on the list!</h1>
   <p id="text" class="sub" style="font-size:1.1rem">Thank you for confirming. We'll send you one friendly email when the full Rumbletuck library is ready.</p>
 </div>
+<div id="gift" class="waitlist" style="text-align:center;margin-top:18px" hidden>
+  <div style="font-size:2.4rem;line-height:1">🖍️</div>
+  <h2 style="color:#fff;margin:.3em 0">Here's your free coloring pack</h2>
+  <p class="sub">10 vehicle friends from the stories, ready to print on regular paper. Color them in before bedtime.</p>
+  <p style="margin:14px 0 4px"><a class="btn btn-primary" id="gift-link" href="free/coloring-pack-b9e95099.pdf" rel="nofollow" download="Rumbletuck-Coloring-Pack.pdf">Download the coloring pack (PDF)</a></p>
+</div>
 <p style="text-align:center;margin-top:22px"><a class="btn btn-primary" id="cta" href="./#stories">Read a free story tonight</a></p>
 </main>
 <script>
 (function(){
   var M = {
-    confirmed:   ['🌙', "You're on the list!", "Thank you for confirming. We'll send you one friendly email when the full Rumbletuck library is ready.", 'Read a free story tonight', './#stories'],
-    already:     ['⭐', "You're already confirmed", "Good news: you're already on the waitlist. There's nothing else to do.", 'Read a free story tonight', './#stories'],
+    confirmed:   ['🌙', "You're on the list!", "Thank you for confirming. We'll send you one friendly email when the full Rumbletuck library is ready. Your free coloring pack is just below.", 'Read a free story tonight', './#stories'],
+    already:     ['⭐', "You're already confirmed", "Good news: you're already on the waitlist. Your free coloring pack is just below.", 'Read a free story tonight', './#stories'],
     expired:     ['⏰', 'That link has expired', "Confirmation links work for 7 days. Please sign up again and we'll send you a fresh one.", 'Sign up again', './#waitlist'],
     invalid:     ['🤔', "That link didn't work", "It may have been copied only partly, or it's no longer active. You can sign up again on the home page.", 'Back to the waitlist', './#waitlist'],
     unsubscribed:['👋', "You're unsubscribed", "We won't email you again. Thanks for giving Rumbletuck a try, and sweet dreams!", 'Back to the stories', './#stories']
@@ -27,6 +33,7 @@
   document.getElementById('text').textContent = m[2];
   var c = document.getElementById('cta'); c.textContent = m[3]; c.href = m[4];
   document.title = m[1] + ' — Rumbletuck';
+  if (s === 'confirmed' || s === 'already') document.getElementById('gift').hidden = false;
 })();
 </script>
 </body></html>
