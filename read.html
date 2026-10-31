@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Story — Rumbletuck</title>
+<meta name="theme-color" content="#11163a">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" href="icons/icon-192.png" type="image/png">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body class="reader">
+<div class="r-shell">
+  <div class="r-top">
+    <a class="icon-btn" href="./#stories" aria-label="Back to all stories">←</a>
+    <div class="title" id="r-title">Loading…</div>
+  </div>
+  <div class="r-stage" id="r-stage">
+    <img id="r-img" alt="" width="1200" height="900" draggable="false">
+    <button class="r-tap prev" id="r-tap-prev" aria-label="Previous page"></button>
+    <button class="r-tap next" id="r-tap-next" aria-label="Next page"></button>
+    <div class="r-end" id="r-end">
+      <div class="box">
+        <div style="font-size:2.4rem">🌙</div>
+        <h2>The End. Sweet dreams!</h2>
+        <p>Enjoyed this one? The full library has <span data-full-count>80+</span> calm vehicle stories.</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="./#waitlist">Join the waitlist</a>
+          <a class="btn btn-ghost" href="./#stories">More free stories</a>
+        </div>
+        <p style="margin-top:14px"><button class="btn btn-ghost" id="r-again" style="min-height:40px">Read again</button></p>
+      </div>
+    </div>
+  </div>
+  <p class="r-hint">Tip: turn your phone sideways for bigger pages.</p>
+  <div class="r-bottom">
+    <button class="icon-btn" id="r-prev" aria-label="Previous page">‹</button>
+    <button class="btn btn-primary r-play" id="r-play">▶ Read to me</button>
+    <span class="r-count" id="r-count"></span>
+    <button class="icon-btn" id="r-next" aria-label="Next page">›</button>
+  </div>
+</div>
+<script src="config.js"></script>
+<script src="stories.js"></script>
+<script src="reader.js"></script>
+</body>
+</html>

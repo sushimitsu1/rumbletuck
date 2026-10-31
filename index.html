@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Rumbletuck — free illustrated, narrated bedtime stories</title>
+<meta name="description" content="Original illustrated, narrated bedtime stories about big vehicles for ages 2–6. Read 10 free sample stories.">
+<meta name="theme-color" content="#1d2453">
+<meta name="application-name" content="Rumbletuck">
+<meta name="apple-mobile-web-app-title" content="Rumbletuck">
+<meta property="og:title" content="Rumbletuck">
+<meta property="og:description" content="Original illustrated, narrated bedtime stories about big vehicles for ages 2–6. Read 10 free sample stories.">
+<meta property="og:image" content="https://rumbletuck.com/og-image.jpg">
+<meta property="og:url" content="https://rumbletuck.com/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://rumbletuck.com/">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" href="icons/icon-192.png" type="image/png">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="hero">
+  <div class="wrap">
+    <div class="topbar">
+      <a class="brand" href="./"><span data-site-name>Rumbletuck</span><span class="badge">Free sample</span></a>
+      <a class="btn btn-ghost" href="#waitlist" style="min-height:40px;padding:0 14px;font-size:.9rem">Join waitlist</a>
+    </div>
+    <div class="hero-grid">
+      <div>
+        <h1>Calm, cozy bedtime stories about big vehicles</h1>
+        <p class="lead">Original picture books with a gentle narrator who reads every page aloud. Made for little vehicle fans ages 2–6, and for the grown-ups tucking them in.</p>
+        <ul class="chips">
+          <li>🚜 Diggers, trains, boats &amp; planes</li>
+          <li>🔊 Every page narrated</li>
+          <li>🌙 Gentle, never scary</li>
+          <li>📱 Phone, tablet &amp; computer</li>
+        </ul>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="#stories">Read a free story</a>
+          <a class="btn btn-ghost" href="#waitlist">Get the full library</a>
+        </div>
+      </div>
+      <div class="art"><img src="stories/cedar/cover.webp" width="1200" height="900" alt="Cedar the Night Train and the Sleepy Valley: a smiling green steam train pulling glowing carriages past a station at dusk"></div>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <section id="stories">
+    <h2>10 free sample stories</h2>
+    <p class="sub">Tap a book to open it. Press play and the narrator reads each page, turning pages for you.</p>
+    <div class="grid" id="story-grid"></div>
+  </section>
+
+  <section>
+    <h2>Made for bedtime</h2>
+    <div class="features">
+      <div class="feature"><b>Wind-down stories</b>Each book is about 2 minutes long and ends with the characters settling down to sleep.</div>
+      <div class="feature"><b>Kind little helpers</b>Vehicles solve small problems with patience, teamwork and care.</div>
+      <div class="feature"><b>Read-along narration</b>A warm, calm voice reads every page. Pause anytime, or turn pages yourself.</div>
+      <div class="feature"><b>No ads, no accounts</b>No sign-up needed to read the samples, and nothing for kids to tap away to.</div>
+    </div>
+  </section>
+
+  <section id="waitlist" class="waitlist">
+    <h2>Join the waitlist for the full library (<span data-full-count>80+</span> stories)</h2>
+    <p class="sub">We're getting the full collection ready: excavators, fire boats, tractors, rockets, buses and more. Leave a parent's email and we'll tell you when it opens.</p>
+    <form id="wl-form" class="wl-form" name="waitlist" method="POST" data-netlify="true" netlify-honeypot="company" novalidate>
+      <input type="hidden" name="form-name" value="waitlist">
+      <label class="sr" for="wl-email">Parent's email</label>
+      <input id="wl-email" type="email" name="email" placeholder="Parent's email address" autocomplete="email" required>
+      <input class="hp" type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <button class="btn btn-primary" type="submit">Join the waitlist</button>
+    </form>
+    <label class="wl-consent"><input type="checkbox" id="wl-consent"> I'm a parent or guardian (18+) and I'd like an email when the full library launches. Unsubscribe anytime.</label>
+    <p class="wl-status" id="wl-status" role="status" aria-live="polite"></p>
+  </section>
+</main>
+
+<footer class="wrap">
+  <div class="privacy"><b>Privacy, in plain words:</b> we only collect a parent's email address if you choose to join the waitlist, and we use it only to tell you about the full library. We do not collect any information from children, there are no accounts, ads or trackers, and reading the free stories needs no sign-up. <a href="privacy.html">Read the privacy note</a>.</div>
+  <p>© <span id="yr"></span> <span data-site-name>Rumbletuck</span>. All stories and illustrations are original.</p>
+</footer>
+
+<script src="config.js"></script>
+<script src="stories.js"></script>
+<script src="home.js"></script>
+</body>
+</html>
