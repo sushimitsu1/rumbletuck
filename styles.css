@@ -75,3 +75,34 @@ body.reader{background:#11163a;color:#fff;height:100dvh;overflow:hidden;overscro
 .r-hint{display:none;text-align:center;margin:0;color:#aab3e6;font-size:.9rem}
 @media(orientation:portrait) and (max-width:600px){.r-hint{display:block}}
 @media(max-width:440px){.brand span.badge{display:none}.brand{font-size:1rem}.topbar .btn{white-space:nowrap}}
+
+/* Lights-off listening mode: near-black, warm, dim. */
+.lo-open{flex:none;display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:0 14px;border-radius:99px;border:0;background:rgba(255,194,61,.16);color:#ffd88a;font:800 .92rem Nunito,sans-serif;cursor:pointer;touch-action:manipulation;white-space:nowrap}
+.lo-open:active{background:rgba(255,194,61,.3)}
+.lo-open:focus-visible,.lo-btn:focus-visible,.lo input:focus-visible{outline:2px solid #8a6a3e;outline-offset:3px}
+.lo{position:fixed;inset:0;z-index:50;background:#000;color:#6e5638;display:flex;align-items:center;justify-content:center;text-align:center;padding:24px;padding-bottom:max(24px,env(safe-area-inset-bottom));animation:lo-in 1.6s ease-out}
+.lo[hidden]{display:none}
+.lo-inner{max-width:340px;width:100%}
+.lo-moon{color:#7a5f3c;opacity:.7;margin:0 auto 10px;animation:lo-breathe 9s ease-in-out infinite}
+.lo-title{color:#7d6444;font-size:1rem;font-weight:800;margin:0 0 4px;line-height:1.3}
+.lo-status{margin:0;min-height:1.4em;font-size:.88rem;color:#5e4a31}
+.lo-sub{margin:0 0 22px;font-size:.8rem;color:#4d3d29}
+.lo-ctrls{display:flex;justify-content:center;gap:22px;margin-bottom:26px}
+.lo-btn{width:56px;height:56px;border-radius:50%;border:1px solid #2c2318;background:#0d0a07;color:#7a5f3c;font-size:1.15rem;cursor:pointer;touch-action:manipulation;display:inline-flex;align-items:center;justify-content:center}
+.lo-btn:active{background:#1a140d}
+.lo-timer{border:0;margin:0 0 12px;padding:0;display:flex;flex-wrap:wrap;justify-content:center;gap:6px}
+.lo-timer legend{width:100%;font-size:.78rem;color:#4d3d29;margin-bottom:6px;padding:0}
+.lo-timer label{position:relative;font-size:.82rem;color:#6a5336;border:1px solid #2c2318;border-radius:99px;padding:6px 11px;cursor:pointer;min-height:36px;display:inline-flex;align-items:center}
+.lo-timer input{position:absolute;opacity:0;inset:0;margin:0;cursor:pointer}
+.lo-timer label:has(input:checked){background:#1d160e;color:#8c6d45;border-color:#4a3a26}
+.lo-timer label:has(input:focus-visible){outline:2px solid #8a6a3e;outline-offset:2px}
+.lo-next{display:inline-flex;align-items:center;gap:8px;font-size:.82rem;color:#5e4a31;cursor:pointer;min-height:36px}
+.lo-next input{appearance:none;-webkit-appearance:none;width:18px;height:18px;margin:0;border:1px solid #4a3a26;border-radius:5px;background:#0d0a07;cursor:pointer}
+.lo-next input:checked{background:#5e4a31;box-shadow:inset 0 0 0 3px #0d0a07}
+.lo-next.off{opacity:.45;cursor:default}
+body.lo-on{background:#000}
+body.lo-on .r-shell{visibility:hidden}
+@keyframes lo-in{from{opacity:0}to{opacity:1}}
+@keyframes lo-breathe{0%,100%{opacity:.55}50%{opacity:.75}}
+@media (prefers-reduced-motion:reduce){.lo,.lo-moon{animation:none}}
+@media(max-width:380px){.lo-open span{display:none}.lo-open{width:44px;padding:0;justify-content:center}}

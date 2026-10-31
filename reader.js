@@ -16,6 +16,8 @@
   const audSrc = p => `stories/${story.id}/p${pad(p + 1)}.mp3`;
   const audio = new Audio(); audio.preload = 'auto';
   let page = -1;            // -1 = cover
+  const startP = parseInt(new URLSearchParams(location.search).get('p'), 10);
+  if (startP >= 1 && startP <= story.pages) page = startP - 1; // ?p=N opens on page N (used by lights-off "next story")
   let readAlong = false;    // auto page-turn mode
   let advanceTimer = null;
   const preloaded = new Set();
@@ -73,6 +75,7 @@
   $('r-tap-prev').addEventListener('click', () => go(page - 1));
   $('r-again').addEventListener('click', () => { readAlong = false; go(-1); });
   document.addEventListener('keydown', e => {
+    if (document.body.classList.contains('lo-on')) return; // lights-off mode has its own keys
     if (e.key === 'ArrowRight') go(page + 1);
     else if (e.key === 'ArrowLeft') go(page - 1);
     else if (e.key === ' ') { e.preventDefault(); playBtn.click(); }
@@ -87,6 +90,13 @@
     if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)) go(page + (dx < 0 ? 1 : -1));
   }, {passive: true});
   img.addEventListener('contextmenu', e => e.preventDefault());
+  // Small hook for lights-off mode (lightsoff.js).
+  window.RTReader = {
+    story,
+    get page(){ return page; },
+    stop(){ readAlong = false; stopAudio(); setPlayLabel(); },
+    goTo(p){ readAlong = false; stopAudio(); page = Math.max(-1, Math.min(story.pages - 1, p)); render(); }
+  };
   render();
 })();
 
