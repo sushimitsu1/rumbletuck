@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Thank you — Rumbletuck</title><meta name="robots" content="noindex">
+<link rel="icon" href="favicon.ico"><link rel="stylesheet" href="styles.css"></head>
+<body><main class="wrap" style="max-width:640px;padding-top:28px;padding-bottom:48px">
+<p><a href="./">← Back to stories</a></p>
+<div id="msg" class="waitlist" style="text-align:center">
+  <div id="emoji" style="font-size:3rem;line-height:1">🌙</div>
+  <h1 id="title" style="color:#fff">You're on the list!</h1>
+  <p id="text" class="sub" style="font-size:1.1rem">Thank you for confirming. We'll send you one friendly email when the full Rumbletuck library is ready.</p>
+</div>
+<p style="text-align:center;margin-top:22px"><a class="btn btn-primary" id="cta" href="./#stories">Read a free story tonight</a></p>
+</main>
+<script>
+(function(){
+  var M = {
+    confirmed:   ['🌙', "You're on the list!", "Thank you for confirming. We'll send you one friendly email when the full Rumbletuck library is ready.", 'Read a free story tonight', './#stories'],
+    already:     ['⭐', "You're already confirmed", "Good news: you're already on the waitlist. There's nothing else to do.", 'Read a free story tonight', './#stories'],
+    expired:     ['⏰', 'That link has expired', "Confirmation links work for 7 days. Please sign up again and we'll send you a fresh one.", 'Sign up again', './#waitlist'],
+    invalid:     ['🤔', "That link didn't work", "It may have been copied only partly, or it's no longer active. You can sign up again on the home page.", 'Back to the waitlist', './#waitlist'],
+    unsubscribed:['👋', "You're unsubscribed", "We won't email you again. Thanks for giving Rumbletuck a try, and sweet dreams!", 'Back to the stories', './#stories']
+  };
+  var s = new URLSearchParams(location.search).get('status') || 'confirmed';
+  var m = M[s] || M.invalid;
+  document.getElementById('emoji').textContent = m[0];
+  document.getElementById('title').textContent = m[1];
+  document.getElementById('text').textContent = m[2];
+  var c = document.getElementById('cta'); c.textContent = m[3]; c.href = m[4];
+  document.title = m[1] + ' — Rumbletuck';
+})();
+</script>
+</body></html>

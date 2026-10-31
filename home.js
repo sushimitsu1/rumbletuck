@@ -26,56 +26,26 @@
     consent.parentElement.style.display = 'none';
     return;
   }
-  const PROVIDERS = {
-    formspree:    { field: 'email', mode: 'cors' },
-    buttondown:   { field: 'email', mode: 'no-cors' },
-    kit:          { field: 'email_address', mode: 'cors', json: true },  // Kit allows CORS and replies {status:'success'|'failed'}
-    mailerlite:   { field: 'fields[email]', mode: 'no-cors' },
-    'google-form':{ field: '', mode: 'no-cors' },
-    netlify:      { field: 'email', mode: 'cors', urlencoded: true },
-    generic:      { field: 'email', mode: 'cors' }
-  };
-  const p = PROVIDERS[wl.provider] || PROVIDERS.generic;
+  // Our own badge-free double opt-in API (Cloudflare Worker + Resend). See /workspace/rumbletuck-waitlist/worker.
   form.addEventListener('submit', async e => {
     e.preventDefault();
     const email = form.email.value.trim();
-    if (form.company.value) return; // bot
+    if (form.company.value) { status.textContent = 'Almost there! Please check your inbox.'; return; } // bot honeypot
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { status.textContent = 'Please enter a valid email address.'; return; }
-    if (!consent.checked) { status.textContent = 'Please tick the box to confirm you are a parent or guardian.'; return; }
-    const field = wl.emailField || p.field || 'email';
-    const data = new FormData();
-    data.append(field, email);
-    if (wl.provider === 'netlify') data.append('form-name', 'waitlist');
+    if (!consent.checked) { status.textContent = 'Please tick the box to confirm you are a parent or guardian.'; consent.focus(); return; }
     const btn = form.querySelector('button'); btn.disabled = true; status.textContent = 'Sending…';
-    const OK = 'You\'re on the list! Please check your inbox to confirm.';
-    // Fallback for when fetch/CORS is blocked: a normal form POST into a hidden iframe.
-    const iframePost = () => new Promise(resolve => {
-      const name = 'wl-sink-' + Date.now();
-      const ifr = document.createElement('iframe'); ifr.name = name; ifr.hidden = true; ifr.title = 'waitlist';
-      const f = document.createElement('form'); f.method = 'POST'; f.action = wl.endpoint; f.target = name; f.hidden = true;
-      const i = document.createElement('input'); i.type = 'hidden'; i.name = field; i.value = email; f.appendChild(i);
-      document.body.append(ifr, f);
-      let done = false; const fin = () => { if (done) return; done = true; setTimeout(() => { ifr.remove(); f.remove(); }, 1000); resolve(); };
-      ifr.addEventListener('load', fin); setTimeout(fin, 6000);
-      f.submit();
-    });
     try {
-      const opts = { method: 'POST', mode: p.mode };
-      if (p.urlencoded) { opts.body = new URLSearchParams(data).toString(); opts.headers = { 'Content-Type': 'application/x-www-form-urlencoded' }; }
-      else { opts.body = data; if (p.mode === 'cors') opts.headers = { 'Accept': 'application/json' }; }
-      let res;
-      try { res = await fetch(wl.endpoint, opts); }
-      catch (netErr) { if (wl.provider === 'kit') { await iframePost(); res = null; } else throw netErr; }
-      if (res && p.mode === 'cors' && !res.ok) throw new Error('HTTP ' + res.status);
-      if (res && p.json) {
-        let body = null; try { body = await res.json(); } catch (_) {}
-        if (body && body.status && body.status !== 'success') {
-          const msgs = (body.errors && body.errors.messages) || [];
-          const bad = new Error('rejected'); bad.userMsg = msgs.some(m => /email/i.test(m)) ? 'Please check that email address and try again.' : null; throw bad;
-        }
+      const res = await fetch(wl.endpoint, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({ email, parentConfirm: consent.checked, company: form.company.value })
+      });
+      let body = null; try { body = await res.json(); } catch (_) {}
+      if (!res.ok || !body || !body.ok) {
+        const bad = new Error('HTTP ' + res.status); bad.userMsg = body && body.message; throw bad;
       }
       form.reset(); consent.checked = false;
-      status.textContent = OK;
+      status.textContent = body.message || 'Almost there! We\'ve sent you an email. Tap the button in it to confirm your spot.';
     } catch (err) {
       status.textContent = err.userMsg || 'Sorry, that didn\'t go through. Please try again in a moment.';
     } finally { btn.disabled = false; }
