@@ -12,3 +12,6 @@ Create a free Kit form, then paste its URL `https://app.kit.com/forms/FORM_ID/su
     python3 -m http.server 8080   # then open http://localhost:8080
 
 After changing files, bump `VERSION` in `sw.js` so returning visitors get the update.
+
+## Search pages (SEO)
+`python3 tools/build_seo.py` regenerates, from `stories.js`: one crawlable page per story at `story/<slug>/` (full text, cover, Open Graph, schema.org Book), share images in `og/`, `sitemap.xml`, `robots.txt`, and the prerendered story grid, story links and JSON-LD between the `<!-- SEO:... -->` markers in `index.html`. Re-run it whenever a story changes, then bump `VERSION` in `sw.js`. (Story pages live under `story/`, not `stories/`, because the service worker serves `stories/` cache-first.)

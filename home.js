@@ -6,7 +6,8 @@
 
   // Story grid
   const grid = document.getElementById('story-grid');
-  grid.innerHTML = (window.STORIES || []).map(s => `
+  // index.html ships a prerendered grid (tools/build_seo.py); only render here if it is missing.
+  if (!grid.querySelector('.card')) grid.innerHTML = (window.STORIES || []).map(s => `
     <a class="card" href="read.html?s=${encodeURIComponent(s.id)}">
       <img src="stories/${s.id}/thumb.webp" width="640" height="480" loading="lazy" alt="Cover of ${s.title.replace(/"/g,'&quot;')}">
       <div class="body"><span class="tag">${s.vehicle}</span><h3>${s.title}</h3><p>${s.description}</p></div>
