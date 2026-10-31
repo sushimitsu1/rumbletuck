@@ -29,7 +29,7 @@
   const PROVIDERS = {
     formspree:    { field: 'email', mode: 'cors' },
     buttondown:   { field: 'email', mode: 'no-cors' },
-    kit:          { field: 'email_address', mode: 'no-cors' },
+    kit:          { field: 'email_address', mode: 'cors', json: true },  // Kit allows CORS and replies {status:'success'|'failed'}
     mailerlite:   { field: 'fields[email]', mode: 'no-cors' },
     'google-form':{ field: '', mode: 'no-cors' },
     netlify:      { field: 'email', mode: 'cors', urlencoded: true },
@@ -47,16 +47,37 @@
     data.append(field, email);
     if (wl.provider === 'netlify') data.append('form-name', 'waitlist');
     const btn = form.querySelector('button'); btn.disabled = true; status.textContent = 'Sending…';
+    const OK = 'You\'re on the list! Please check your inbox to confirm.';
+    // Fallback for when fetch/CORS is blocked: a normal form POST into a hidden iframe.
+    const iframePost = () => new Promise(resolve => {
+      const name = 'wl-sink-' + Date.now();
+      const ifr = document.createElement('iframe'); ifr.name = name; ifr.hidden = true; ifr.title = 'waitlist';
+      const f = document.createElement('form'); f.method = 'POST'; f.action = wl.endpoint; f.target = name; f.hidden = true;
+      const i = document.createElement('input'); i.type = 'hidden'; i.name = field; i.value = email; f.appendChild(i);
+      document.body.append(ifr, f);
+      let done = false; const fin = () => { if (done) return; done = true; setTimeout(() => { ifr.remove(); f.remove(); }, 1000); resolve(); };
+      ifr.addEventListener('load', fin); setTimeout(fin, 6000);
+      f.submit();
+    });
     try {
       const opts = { method: 'POST', mode: p.mode };
       if (p.urlencoded) { opts.body = new URLSearchParams(data).toString(); opts.headers = { 'Content-Type': 'application/x-www-form-urlencoded' }; }
       else { opts.body = data; if (p.mode === 'cors') opts.headers = { 'Accept': 'application/json' }; }
-      const res = await fetch(wl.endpoint, opts);
-      if (p.mode === 'cors' && !res.ok) throw new Error('HTTP ' + res.status);
+      let res;
+      try { res = await fetch(wl.endpoint, opts); }
+      catch (netErr) { if (wl.provider === 'kit') { await iframePost(); res = null; } else throw netErr; }
+      if (res && p.mode === 'cors' && !res.ok) throw new Error('HTTP ' + res.status);
+      if (res && p.json) {
+        let body = null; try { body = await res.json(); } catch (_) {}
+        if (body && body.status && body.status !== 'success') {
+          const msgs = (body.errors && body.errors.messages) || [];
+          const bad = new Error('rejected'); bad.userMsg = msgs.some(m => /email/i.test(m)) ? 'Please check that email address and try again.' : null; throw bad;
+        }
+      }
       form.reset(); consent.checked = false;
-      status.textContent = 'You\'re on the list! We\'ll email you when the full library opens. 🌙';
+      status.textContent = OK;
     } catch (err) {
-      status.textContent = 'Sorry, that didn\'t go through. Please try again in a moment.';
+      status.textContent = err.userMsg || 'Sorry, that didn\'t go through. Please try again in a moment.';
     } finally { btn.disabled = false; }
   });
 })();

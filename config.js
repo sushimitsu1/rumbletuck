@@ -12,8 +12,8 @@ window.SITE_CONFIG = {
   //   netlify     -> endpoint '/' (only works when hosted on Netlify; the form has data-netlify markup)
   //   generic     -> any endpoint that accepts a POST with an "email" field
   waitlist: {
-    provider: 'kit',   // approved provider; endpoint stays empty until the Kit form exists
-    endpoint: '',
+    provider: 'kit',   // Kit form 10123554 (double opt-in ON)
+    endpoint: 'https://app.kit.com/forms/10123554/subscriptions',
     emailField: ''   // optional override of the email field name (required for google-form)
   },
 
