@@ -18,6 +18,9 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE = 'https://rumbletuck.com'
 NAME = 'Rumbletuck'
 TODAY = datetime.date.today().isoformat()
+# Pages that must stay out of search. This script never writes them and never lists them in the sitemap;
+# it only reads them to check the noindex tag is still there.
+NOINDEX_PAGES = ['confirmed.html']  # waitlist thank-you page
 esc = lambda s: html.escape(s, quote=True)
 
 def load_stories():
@@ -197,6 +200,9 @@ def main():
     open(os.path.join(ROOT, 'sitemap.xml'), 'w').write('\n'.join(sm) + '\n')
     open(os.path.join(ROOT, 'robots.txt'), 'w').write(f'User-agent: *\nAllow: /\n\nSitemap: {SITE}/sitemap.xml\n')
     for u, _ in urls: print(u)
+    for f in NOINDEX_PAGES:
+        if 'content="noindex"' not in open(os.path.join(ROOT, f), encoding='utf-8').read():
+            print(f'WARNING: {f} has lost its noindex tag; put it back by hand.', file=sys.stderr)
 
 if __name__ == '__main__':
     main()
