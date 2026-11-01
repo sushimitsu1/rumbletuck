@@ -1,0 +1,12 @@
+{
+  "_how": "One line per story that has a public YouTube Short: \"<story id>\": \"<11-character video ID>\". The story id is the folder name in stories/ (ra, cody, niko...). Stories not listed just show the Subscribe button. After editing, run: python3 tools/build_seo.py, then bump VERSION in sw.js.",
+  "channel": "https://www.youtube.com/@rumbletuckstories",
+  "subscribe": "https://www.youtube.com/@rumbletuckstories?sub_confirmation=1",
+  "featured": "ra",
+  "videos": {
+    "ra": "lnoPBUjI6tE",
+    "niko": "Ch-pRfP_SbM",
+    "luna": "GzTiaV7nFy0",
+    "cody": "_dvVLe9WhJs"
+  }
+}

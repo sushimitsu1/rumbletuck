@@ -9,7 +9,9 @@ It (re)writes:
   og/<id>.jpg               1200x630 share images cropped from each cover
   sitemap.xml, robots.txt
   index.html                the blocks between the <!-- SEO:... --> markers
-                            (static story grid, story links, JSON-LD)
+                            (static story grid, story links, JSON-LD, YouTube block)
+YouTube Shorts come from data/youtube.json (story id -> video ID). Stories without an ID
+get a Subscribe-only block; yt.js also fills in IDs added after the last build.
 Then bump VERSION in sw.js so returning visitors get the new files.
 """
 import datetime, html, json, os, re, sys
@@ -22,6 +24,63 @@ TODAY = datetime.date.today().isoformat()
 # it only reads them to check the noindex tag is still there.
 NOINDEX_PAGES = ['confirmed.html']  # waitlist thank-you page
 esc = lambda s: html.escape(s, quote=True)
+
+def load_youtube():
+    p = os.path.join(ROOT, 'data', 'youtube.json')
+    d = json.load(open(p, encoding='utf-8')) if os.path.exists(p) else {}
+    vids = d.get('videos', {})
+    for k, v in vids.items():
+        if not re.fullmatch(r'[A-Za-z0-9_-]{11}', v): sys.exit(f'data/youtube.json: bad video ID for {k!r}: {v!r}')
+    d.setdefault('channel', 'https://www.youtube.com/@rumbletuckstories')
+    d.setdefault('subscribe', d['channel'] + '?sub_confirmation=1')
+    d['videos'] = vids
+    return d
+
+YT_NOTE = 'Nothing loads from YouTube until you tap play. Then the video plays in YouTube\'s privacy-enhanced mode.'
+
+def short_name(title):
+    return title.split(' the ')[0]
+
+def yt_poster(s, vid, img_base='/'):
+    n = esc(short_name(s['title']))
+    return (f'<button class="yt-poster" type="button" data-yt="{vid}" data-title="{n} – Rumbletuck Short" aria-label="Play the {n} video">'
+            f'<img src="{img_base}stories/{s["id"]}/thumb.webp" alt="" width="640" height="480" loading="lazy">'
+            f'<span class="yt-pill">Short</span><span class="yt-play" aria-hidden="true"></span></button>')
+
+def yt_story_block(s, yt):
+    vid = yt['videos'].get(s['id'])
+    n = esc(short_name(s['title']))
+    btns = (f'<div class="cta-row"><a class="btn btn-yt" href="{esc(yt["channel"])}" target="_blank" rel="noopener">▶ Watch more on YouTube</a>'
+            f'<a class="btn btn-ghost" href="{esc(yt["subscribe"])}" target="_blank" rel="noopener">Subscribe</a></div>')
+    if vid:
+        return (f'<section class="yt-block" id="watch" data-story="{s["id"]}" data-title="{esc(s["title"])}" data-has-video>\n'
+                f'    <div class="yt-frame">{yt_poster(s, vid)}</div>\n'
+                f'    <div class="yt-copy"><h2>Watch {n} on YouTube</h2>'
+                f'<p class="sub">A little animated Short of this story. Watch it together, then read or listen to the whole book.</p>'
+                f'{btns}<p class="yt-note">{YT_NOTE}</p></div>\n  </section>')
+    return (f'<section class="yt-block" id="watch" data-story="{s["id"]}" data-title="{esc(s["title"])}">\n'
+            f'    <div class="yt-frame" hidden></div>\n'
+            f'    <div class="yt-copy"><h2>Rumbletuck on YouTube</h2>'
+            f'<p class="sub">Animated Shorts of the stories and longer bedtime collections. Subscribe and new ones show up for you.</p>'
+            f'<div class="cta-row"><a class="btn btn-yt" href="{esc(yt["subscribe"])}" target="_blank" rel="noopener">▶ Subscribe on YouTube</a></div></div>\n  </section>')
+
+def yt_home_block(stories, yt):
+    by_id = {s['id']: s for s in stories}
+    fid = yt.get('featured') if yt.get('featured') in yt['videos'] else next(iter(yt['videos']), None)
+    sub = (f'<div class="cta-row"><a class="btn btn-yt" href="{esc(yt["subscribe"])}" target="_blank" rel="noopener">▶ Subscribe on YouTube</a>'
+           f'<a class="btn btn-ghost" href="{esc(yt["channel"])}" target="_blank" rel="noopener">Watch more on YouTube</a></div>')
+    copy = ('<h2>Watch Rumbletuck on YouTube</h2><p class="sub">Little animated Shorts of the stories, plus longer bedtime collections '
+            'for winding down. Subscribe and new ones show up for you.</p>')
+    if not fid or fid not in by_id:
+        return f'  <section class="yt-block yt-home" id="youtube"><div class="yt-copy">{copy}{sub}</div></section>'
+    s = by_id[fid]
+    return (f'  <section class="yt-block yt-home" id="youtube">\n'
+            f'    <div class="yt-frame">{yt_poster(s, yt["videos"][fid], "")}</div>\n'
+            f'    <div class="yt-copy">{copy}{sub}<p class="yt-note">{YT_NOTE}</p></div>\n  </section>')
+
+def footer_yt(yt):
+    return (f'<p class="footer-yt">▶ <a href="{esc(yt["channel"])}" target="_blank" rel="noopener">Rumbletuck on YouTube</a> · '
+            f'<a href="{esc(yt["subscribe"])}" target="_blank" rel="noopener">Subscribe</a></p>')
 
 def load_stories():
     src = open(os.path.join(ROOT, 'stories.js'), encoding='utf-8').read()
@@ -70,7 +129,7 @@ def card(s, href):
             f'<img src="/stories/{s["id"]}/thumb.webp" width="640" height="480" loading="lazy" alt="Cover of {esc(s["title"])}">'
             f'<div class="body"><span class="tag">{esc(s["vehicle"])}</span><h3>{esc(s["title"])}</h3><p>{esc(s["description"])}</p></div></a>')
 
-def story_page(s, stories, slugs):
+def story_page(s, stories, slugs, yt):
     sid, slug = s['id'], slugs[s['id']]
     url = f'{SITE}/story/{slug}/'
     title = f"{s['title']} – Free Bedtime Story for Toddlers | {NAME}"
@@ -142,6 +201,8 @@ def story_page(s, stories, slugs):
 </header>
 
 <main class="wrap">
+  {yt_story_block(s, yt)}
+
   <article class="story-text" id="story-text">
     <h2>The story</h2>
 {paras}
@@ -159,9 +220,11 @@ def story_page(s, stories, slugs):
 </main>
 
 <footer class="wrap">
+  {footer_yt(yt)}
   <p><a href="/">All free stories</a> · <a href="/privacy.html">Privacy note</a></p>
   <p>© {datetime.date.today().year} {NAME}. All stories and illustrations are original.</p>
 </footer>
+<script src="/yt.js" defer></script>
 <script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('/sw.js').catch(()=>{{}});</script>
 </body>
 </html>
@@ -174,10 +237,11 @@ def replace_block(src, key, content):
 
 def main():
     stories = load_stories()
+    yt = load_youtube()
     slugs = {s['id']: slugify(s['title']) for s in stories}
     for s in stories:
         d = os.path.join(ROOT, 'story', slugs[s['id']]); os.makedirs(d, exist_ok=True)
-        open(os.path.join(d, 'index.html'), 'w', encoding='utf-8').write(story_page(s, stories, slugs))
+        open(os.path.join(d, 'index.html'), 'w', encoding='utf-8').write(story_page(s, stories, slugs, yt))
         make_og(s)
 
     # Home page blocks
@@ -191,6 +255,8 @@ def main():
     src = replace_block(src, 'GRID', grid)
     src = replace_block(src, 'LINKS', links)
     src = replace_block(src, 'JSONLD', ld_script(home_ld))
+    src = replace_block(src, 'YOUTUBE', yt_home_block(stories, yt))
+    src = replace_block(src, 'FOOTERYT', footer_yt(yt))
     open(p, 'w', encoding='utf-8').write(src)
 
     urls = [(SITE + '/', '1.0')] + [(f'{SITE}/story/{slugs[s["id"]]}/', '0.8') for s in stories] + [(SITE + '/privacy.html', '0.2')]

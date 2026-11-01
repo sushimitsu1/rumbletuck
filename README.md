@@ -15,3 +15,8 @@ After changing files, bump `VERSION` in `sw.js` so returning visitors get the up
 
 ## Search pages (SEO)
 `python3 tools/build_seo.py` regenerates, from `stories.js`: one crawlable page per story at `story/<slug>/` (full text, cover, Open Graph, schema.org Book), share images in `og/`, `sitemap.xml`, `robots.txt`, and the prerendered story grid, story links and JSON-LD between the `<!-- SEO:... -->` markers in `index.html`. Re-run it whenever a story changes, then bump `VERSION` in `sw.js`. (Story pages live under `story/`, not `stories/`, because the service worker serves `stories/` cache-first.)
+
+## YouTube Shorts on the site
+- Video IDs live in `data/youtube.json` (`"<story id>": "<video ID>"`, story id = folder name in `stories/`).
+- After adding an ID: `python3 tools/build_seo.py`, bump `VERSION` in `sw.js`, commit, push. (`yt.js` also fills in a newly added ID at runtime, but rebuilding keeps the static HTML right.)
+- Embeds are click-to-play from youtube-nocookie.com; nothing loads from YouTube before a tap. The service worker only handles same-origin requests, so YouTube is never cached.

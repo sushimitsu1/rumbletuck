@@ -75,7 +75,7 @@
   $('r-tap-prev').addEventListener('click', () => go(page - 1));
   $('r-again').addEventListener('click', () => { readAlong = false; go(-1); });
   document.addEventListener('keydown', e => {
-    if (document.body.classList.contains('lo-on')) return; // lights-off mode has its own keys
+    if (document.body.classList.contains('lo-on') || document.body.classList.contains('yt-on')) return; // lights-off mode / video pop-up have their own keys
     if (e.key === 'ArrowRight') go(page + 1);
     else if (e.key === 'ArrowLeft') go(page - 1);
     else if (e.key === ' ') { e.preventDefault(); playBtn.click(); }
