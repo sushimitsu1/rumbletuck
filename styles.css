@@ -157,3 +157,24 @@ body.lo-on .r-shell{visibility:hidden}
 .yt-modal-bar{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
 .yt-modal-bar .btn{min-height:44px}
 .hero-yt{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;margin:14px 0 0;font-size:.92rem;opacity:.95}.hero-yt .btn{min-height:40px;padding:0 16px;font-size:.92rem}
+
+/* Follow Rumbletuck: homepage section + footer icon row (icons: /icons/social.svg sprite, no third-party scripts) */
+.si{width:24px;height:24px;fill:currentColor;flex:none}
+.follow{background:#fff;border-radius:28px;padding:26px 22px 22px;margin:30px 0 10px;text-align:center;box-shadow:0 2px 10px rgba(36,48,74,.06);border:2px dashed #f1e2bf}
+.follow-moon{width:56px;height:56px;margin:0 auto 6px;border-radius:16px}
+.follow h2{margin-bottom:4px}
+.follow .sub{margin-bottom:16px}
+.follow-list{list-style:none;margin:0 auto;padding:0;display:flex;flex-wrap:wrap;justify-content:center;gap:10px;max-width:960px}
+.follow-list li{flex:0 1 auto;min-width:150px}
+.follow-link{display:flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:0 16px;border-radius:99px;background:var(--cream);border:2px solid #e6dcc6;color:var(--night);font-weight:800;text-decoration:none;touch-action:manipulation;white-space:nowrap}
+.follow-link .si{color:var(--brand,var(--night))}
+.follow-link:hover,.follow-link:focus-visible{border-color:var(--brand,var(--sky));background:#fff}
+.follow-link:focus-visible,.footer-social a:focus-visible{outline:3px solid var(--sky);outline-offset:2px}
+.follow-link:active{transform:translateY(1px)}
+.follow-note{margin:14px 0 0;color:var(--soft);font-size:.85rem}
+.footer-social{display:flex;flex-wrap:wrap;align-items:center;gap:6px 12px;margin:0 0 12px}
+.footer-social>span:first-child{font-weight:800;color:var(--night)}
+.fs-icons{display:flex;gap:6px}
+.footer-social a{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:50%;background:#fff;color:var(--night);box-shadow:0 2px 8px rgba(36,48,74,.08)}
+.footer-social a:hover{color:var(--sky)}
+@media(max-width:440px){.follow-list li{flex:1 1 calc(50% - 5px);min-width:0}.follow-link{padding:0 10px}.follow-list li:first-child{flex-basis:100%}}

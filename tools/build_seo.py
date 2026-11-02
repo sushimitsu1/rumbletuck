@@ -78,9 +78,38 @@ def yt_home_block(stories, yt):
             f'    <div class="yt-frame">{yt_poster(s, yt["videos"][fid], "")}</div>\n'
             f'    <div class="yt-copy">{copy}{sub}<p class="yt-note">{YT_NOTE}</p></div>\n  </section>')
 
+def load_social():
+    p = os.path.join(ROOT, 'data', 'social.json')
+    if not os.path.exists(p): return []
+    profs = json.load(open(p, encoding='utf-8')).get('profiles', [])
+    for x in profs:
+        if not x.get('url', '').startswith('https://'): sys.exit(f'data/social.json: bad url for {x.get("name")!r}')
+    return profs
+
+def social_icon(pid):
+    return f'<svg class="si" aria-hidden="true" focusable="false" width="24" height="24"><use href="/icons/social.svg#{esc(pid)}"></use></svg>'
+
+def follow_home_block(social):
+    if not social: return ''
+    items = '\n'.join(
+        f'      <li><a class="follow-link" href="{esc(x["url"])}" target="_blank" rel="noopener" style="--brand:{esc(x["color"])}" '
+        f'aria-label="{esc(x["name"])}: Rumbletuck on {esc(x["name"])} (opens in a new tab)">{social_icon(x["id"])}<span>{esc(x["label"])}</span></a></li>'
+        for x in social)
+    return ('  <section class="follow" id="follow" aria-labelledby="follow-h">\n'
+            '    <img class="follow-moon" src="icons/icon-192.png" width="64" height="64" alt="" loading="lazy">\n'
+            '    <h2 id="follow-h">Follow Rumbletuck</h2>\n'
+            '    <p class="sub">New bedtime stories every week. Come say hi!</p>\n'
+            f'    <ul class="follow-list">\n{items}\n    </ul>\n'
+            '    <p class="follow-note">These open each app\u2019s own page (with its own ads and comments), so they\u2019re best for grown-ups.</p>\n'
+            '  </section>')
+
 def footer_yt(yt):
-    return (f'<p class="footer-yt">▶ <a href="{esc(yt["channel"])}" target="_blank" rel="noopener">Rumbletuck on YouTube</a> · '
-            f'<a href="{esc(yt["subscribe"])}" target="_blank" rel="noopener">Subscribe</a></p>')
+    social = load_social()
+    if not social:
+        return (f'<p class="footer-yt">▶ <a href="{esc(yt["channel"])}" target="_blank" rel="noopener">Rumbletuck on YouTube</a> · '
+                f'<a href="{esc(yt["subscribe"])}" target="_blank" rel="noopener">Subscribe</a></p>')
+    icons = ''.join(f'<a href="{esc(x["url"])}" target="_blank" rel="noopener" aria-label="Rumbletuck on {esc(x["name"])} (opens in a new tab)" title="{esc(x["name"])}">{social_icon(x["id"])}</a>' for x in social)
+    return f'<nav class="footer-social" aria-label="Follow Rumbletuck"><span>Follow Rumbletuck</span><span class="fs-icons">{icons}</span></nav>'
 
 def load_stories():
     src = open(os.path.join(ROOT, 'stories.js'), encoding='utf-8').read()
@@ -257,6 +286,7 @@ def main():
     src = replace_block(src, 'JSONLD', ld_script(home_ld))
     src = replace_block(src, 'YOUTUBE', yt_home_block(stories, yt))
     src = replace_block(src, 'FOOTERYT', footer_yt(yt))
+    src = replace_block(src, 'FOLLOW', follow_home_block(load_social()))
     open(p, 'w', encoding='utf-8').write(src)
 
     urls = [(SITE + '/', '1.0')] + [(f'{SITE}/story/{slugs[s["id"]]}/', '0.8') for s in stories] + [(SITE + '/privacy.html', '0.2')]

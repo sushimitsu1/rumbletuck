@@ -1,0 +1,40 @@
+{
+  "_how": "Social profiles shown in the homepage 'Follow Rumbletuck' section and the footer icon row on every page. Order here = order on the site. After editing, run: python3 tools/build_seo.py, then bump VERSION in sw.js.",
+  "profiles": [
+    {
+      "id": "yt",
+      "name": "YouTube",
+      "label": "Subscribe on YouTube",
+      "url": "https://www.youtube.com/@rumbletuckstories?sub_confirmation=1",
+      "color": "#ff0000"
+    },
+    {
+      "id": "tt",
+      "name": "TikTok",
+      "label": "TikTok",
+      "url": "https://www.tiktok.com/@rumbletuckstories",
+      "color": "#111111"
+    },
+    {
+      "id": "ig",
+      "name": "Instagram",
+      "label": "Instagram",
+      "url": "https://www.instagram.com/rumbletuckstories1/",
+      "color": "#d62976"
+    },
+    {
+      "id": "pin",
+      "name": "Pinterest",
+      "label": "Pinterest",
+      "url": "https://www.pinterest.com/rumbletuckstories/",
+      "color": "#e60023"
+    },
+    {
+      "id": "fb",
+      "name": "Facebook",
+      "label": "Facebook",
+      "url": "https://www.facebook.com/Rumbletuckstories",
+      "color": "#1877f2"
+    }
+  ]
+}
