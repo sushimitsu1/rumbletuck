@@ -209,8 +209,8 @@ def story_page(s, stories, slugs, yt):
 <header class="hero">
   <div class="wrap">
     <div class="topbar">
-      <a class="brand" href="/">{NAME}<span class="badge">Free sample</span></a>
-      <a class="btn btn-ghost" href="/#waitlist" style="min-height:40px;padding:0 14px;font-size:.9rem">Join waitlist</a>
+      <a class="brand" href="/"><img class="brand-moon" src="/icons/icon-192.png" width="32" height="32" alt="">{NAME}</a>
+      <nav class="top-nav" aria-label="Site"><a class="top-link" href="/#stories">All stories</a><a class="top-link hide-sm" href="/#together">Things to do</a></nav>
     </div>
     <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> › <a href="/#stories">Bedtime stories</a> › <span>{esc(s['title'])}</span></nav>
     <div class="hero-grid">
@@ -222,7 +222,7 @@ def story_page(s, stories, slugs, yt):
           <a class="btn btn-primary" href="{reader}">▶ Listen / Read now</a>
           <a class="btn btn-ghost" href="#story-text">Read the text</a>
         </div>
-        <p class="story-note">Free, no sign-up. In the reader, tap the moon for lights-off listening: the screen goes dark and the narrator reads the whole story.</p>
+        <p class="story-note">Free, no sign-up. Snuggled in already? In the reader, tap the moon and the screen goes dark while the narrator reads the whole story.</p>
       </div>
       <div class="art"><a href="{reader}"><img src="/stories/{sid}/cover.webp" width="1200" height="900" alt="{esc(alt)}" fetchpriority="high"></a></div>
     </div>
@@ -236,11 +236,12 @@ def story_page(s, stories, slugs, yt):
     <h2>The story</h2>
 {paras}
     <p class="story-end">The End. Sweet dreams! 🌙</p>
-    <div class="cta-row"><a class="btn btn-primary" href="{reader}">▶ Hear it read aloud</a><a class="btn btn-ghost" href="/#waitlist">Get the full library</a></div>
+    <div class="together-tip"><p class="hand">Try this tonight</p><p>Read it once with the sound words, then ask: “What was your favorite part?” Little ones love telling you.</p></div>
+    <div class="cta-row"><a class="btn btn-primary" href="{reader}">▶ Hear it read aloud</a><a class="btn btn-ghost" href="/#waitlist">Hear when new stories arrive</a></div>
   </article>
 
   <section>
-    <h2>More free bedtime stories</h2>
+    <h2>Who’s next tonight?</h2>
     <p class="sub">Calm picture books about trucks, trains, boats, planes and other big vehicles, for little ones ages 2–6.</p>
     <div class="grid">
 {others}

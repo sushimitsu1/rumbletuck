@@ -228,3 +228,125 @@ body.lo-on .r-shell{visibility:hidden}
 .phone-timer span{font-size:.62rem;color:#6a5336;border:1px solid #2c2318;border-radius:99px;padding:3px 7px}
 .phone-timer .on{background:#1d160e;color:#8c6d45;border-color:#4a3a26}
 @media(min-width:760px){.lights{grid-template-columns:1fr 260px;padding:34px 40px}.phone{width:230px}}
+
+/* ===== Warm home (preview): handwritten touches, founder's note, what's here, friends, things to do together ===== */
+@font-face{font-family:'Patrick Hand';src:url(fonts/patrickhand.woff2) format('woff2');font-weight:400;font-display:swap}
+.hand{font-family:'Patrick Hand','Comic Sans MS','Chalkboard SE',Nunito,sans-serif;font-weight:400;letter-spacing:.01em}
+.skip{position:absolute;left:12px;top:-60px;z-index:99;background:var(--sun);color:var(--night);font-weight:800;padding:10px 16px;border-radius:12px;text-decoration:none}
+.skip:focus{top:12px}
+.brand-moon{width:32px;height:32px;border-radius:10px}
+.top-nav{display:flex;gap:14px}
+.hero-kicker{font-size:1.35rem;color:#ffd88a;margin:0;transform:rotate(-1.5deg);transform-origin:left}
+.hero h1{max-width:15ch}
+.listen-alt a{text-decoration-thickness:2px;text-underline-offset:4px}
+main h2{position:relative;padding-bottom:10px}
+main h2::after{content:"";position:absolute;left:0;bottom:0;width:120px;height:10px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 10'%3E%3Cpath d='M2 6c12-5 22 4 34 0s22-5 34 0 22 4 34 0 10-3 14-2' fill='none' stroke='%23ffc23d' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat}
+.follow h2::after,.note h2::after,.waitlist h2::after,.lights h2::after,.yt-home h2::after{display:none}
+.follow h2{padding-bottom:0}
+
+/* Founder's note: a little sheet of lined paper */
+.note{padding-top:30px}
+.note-paper{position:relative;max-width:720px;margin:0 auto;background:#fffdf7 repeating-linear-gradient(180deg,transparent 0 31px,#efe4cc 31px 32px);border-radius:6px 6px 18px 18px;padding:30px 24px 22px;box-shadow:0 10px 26px rgba(36,48,74,.12);transform:rotate(-.6deg)}
+.note-paper::before{content:"";position:absolute;top:-12px;left:50%;width:110px;height:26px;margin-left:-55px;background:rgba(255,194,61,.55);border-radius:3px;transform:rotate(2deg)}
+.note-paper h2{font-size:1.75rem;line-height:1.2;margin-bottom:10px;padding:0}
+.note-paper p{font-size:1.06rem;line-height:32px;margin:0 0 12px}
+.note-sign{font-size:1.4rem;line-height:1.3 !important;color:var(--night);margin-top:6px !important}
+.note-ps{font-size:.95rem !important;color:var(--soft)}
+
+/* What you'll find here */
+.here-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px}
+.here-list a{display:grid;grid-template-columns:44px 1fr;gap:2px 12px;align-items:start;height:100%;background:#fff;border-radius:18px;padding:14px 16px;text-decoration:none;color:var(--ink);box-shadow:0 2px 10px rgba(36,48,74,.06);border:2px solid transparent}
+.here-list a:hover,.here-list a:focus-visible{border-color:var(--sun)}
+.here-list a:focus-visible{outline:3px solid var(--sky);outline-offset:2px}
+.here-ico{grid-row:span 2;width:44px;height:44px;border-radius:14px;background:var(--cream);display:flex;align-items:center;justify-content:center;font-size:1.4rem}
+.here-list b{font-size:1.05rem;color:var(--night)}
+.here-list span:not(.here-ico){color:var(--soft);font-size:.94rem}
+.here-soon a{background:transparent;border:2px dashed #e6c98a;box-shadow:none}
+
+/* Story text links, folded away */
+details.story-links{background:#fff;border-radius:18px;padding:12px 16px;margin-top:18px}
+details.story-links summary{cursor:pointer;font-weight:800;color:var(--night);min-height:32px;display:flex;align-items:center}
+details.story-links[open] summary{margin-bottom:8px}
+
+/* Meet the friends */
+.friend-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.friend a{display:flex;flex-direction:column;height:100%;background:#fff;border-radius:22px;overflow:hidden;text-decoration:none;color:var(--ink);box-shadow:0 4px 14px rgba(36,48,74,.10)}
+.friend a:focus-visible{outline:3px solid var(--sky);outline-offset:2px}
+.friend img{width:100%;aspect-ratio:1/1;object-fit:cover;object-position:50% 50%;background:#e9e2d2}
+.friend-body{display:flex;flex-direction:column;gap:2px;padding:10px 12px 14px;font-size:.92rem;color:var(--soft)}
+.friend-body b{font-size:1.05rem;color:var(--night)}
+.friend-lead{grid-column:1/-1}
+.friend-lead a{display:grid;grid-template-columns:1fr}
+.friend-lead img{aspect-ratio:800/413}
+.friend-says{font-size:1.5rem;color:#d98a00;line-height:1.1}
+.friend-lead .friend-body{font-size:1rem;padding:14px 16px 18px}
+.friend-lead .friend-body b{font-size:1.25rem}
+.friends-more{font-size:1.25rem;color:var(--soft);text-align:center;margin:14px 0 0}
+@media(min-width:720px){.friend-list{grid-template-columns:repeat(4,1fr)}.friend-lead{grid-column:span 2;grid-row:span 2}.friend-lead a{grid-template-rows:auto 1fr}}
+
+/* Things to do together */
+.together-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+.do{background:#fff;border-radius:22px;padding:18px 18px 16px;box-shadow:0 2px 10px rgba(36,48,74,.06)}
+.do h3{margin:0 0 6px;color:var(--night);font-size:1.15rem}
+.do p{margin:0 0 10px;color:var(--soft)}
+.do-game{background:#eef2ff}
+.do-link{font-weight:800}
+.sounds{list-style:none;margin:0;padding:0}
+.sounds li{margin:0 0 6px;color:var(--soft)}
+.sounds .hand{font-size:1.35rem;color:#d98a00;margin-right:6px}
+.routine{margin:4px 0 0;padding-left:26px;font-size:1.28rem;line-height:1.35;color:var(--ink)}
+.routine li{margin-bottom:4px}
+.routine li::marker{color:#d98a00;font-weight:800}
+.game-clue{font-size:1.45rem;line-height:1.3;color:var(--night);margin:0 0 12px;outline:none}
+.game-choices{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.choice{border:3px solid transparent;border-radius:16px;background:#fff;padding:0 0 6px;overflow:hidden;cursor:pointer;font:800 .92rem Nunito,sans-serif;color:var(--night);touch-action:manipulation;display:flex;flex-direction:column;gap:4px;min-height:48px}
+.choice img{width:100%;aspect-ratio:1/1;object-fit:cover}
+.choice:focus-visible{outline:3px solid var(--sky);outline-offset:2px}
+.choice.right{border-color:#2f9e44}
+.choice.wrong{opacity:.45}
+.game-result{min-height:1.6em;margin:10px 0;font-weight:800;color:var(--night)}
+.game-result.yes{color:#2b8a3e}
+.btn-sm{min-height:44px;padding:0 18px;font-size:.95rem}
+
+/* Gentler waitlist */
+.wl-kicker.hand{font-size:1.35rem;color:#ffd88a;text-transform:none;letter-spacing:0;margin:0}
+.wl-gift{font-weight:800;color:#ffd88a;margin:0 0 16px}
+
+@media(max-width:440px){.hide-sm{display:none}.top-nav{gap:8px}.top-link{font-size:.9rem}.note-paper{padding:28px 18px 18px}}
+@media (prefers-reduced-motion:reduce){.note-paper,.hero-kicker{transform:none}}
+.together-tip{background:var(--cream);border-radius:16px;padding:12px 16px;margin:0 0 16px}
+.together-tip p{margin:0;font-size:1rem !important;line-height:1.5 !important}
+.together-tip .hand{font-size:1.35rem !important;color:#d98a00}
+.story-page main h2::after{display:none}.story-page main h2{padding-bottom:0}
+@media(max-width:600px){
+  .grid{grid-template-columns:repeat(2,1fr);gap:10px}
+  .grid .card .body{padding:8px 10px 12px}
+  .grid .card h3{font-size:.92rem}
+  .grid .card p{display:none}
+  .grid .card .tag{font-size:.7rem;padding:1px 8px;margin-bottom:4px}
+  .here-list{grid-template-columns:repeat(2,1fr);gap:10px}
+  .here-list a{grid-template-columns:1fr;padding:12px}
+  .here-ico{grid-row:auto;margin-bottom:4px}
+  .here-list span:not(.here-ico){font-size:.88rem}
+}
+.friend-more a{justify-content:center;align-items:center;text-align:center;padding:16px;background:transparent;border:2px dashed #e6c98a;box-shadow:none;color:var(--soft);font-size:.92rem;gap:6px;min-height:160px}
+.friend-more .hand{font-size:1.5rem;color:#d98a00}
+@media(min-width:720px){.friend-more{grid-column:span 2}}
+@media(min-width:820px){.together-grid{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:720px){
+  .friend-lead a{grid-template-rows:1fr auto}
+  .friend-lead img{height:100%;aspect-ratio:auto;object-fit:cover;min-height:0}
+  .friend-more{grid-column:span 3}
+  .friend-more a{min-height:0}
+}
+@media(min-width:960px){
+  #stories .grid{grid-template-columns:repeat(5,1fr);gap:14px}
+  #stories .grid .card h3{font-size:.95rem}
+  #stories .grid .card p{font-size:.86rem}
+}
+@media(min-width:720px){
+  .friend-lead{grid-row:auto}
+  .friend-lead a{grid-template-rows:auto 1fr}
+  .friend-lead img{height:auto;aspect-ratio:800/413}
+  .friend-more{grid-column:auto}
+}

@@ -31,37 +31,57 @@
 <!-- /SEO:JSONLD -->
 </head>
 <body>
+<a class="skip" href="#main">Skip to the stories</a>
 <header class="hero">
   <div class="wrap">
     <div class="topbar">
-      <a class="brand" href="./"><span data-site-name>Rumbletuck</span><span class="badge">Free sample</span></a>
-      <a class="top-link" href="#stories">All stories</a>
+      <a class="brand" href="./"><img class="brand-moon" src="icons/icon-192.png" width="32" height="32" alt=""><span data-site-name>Rumbletuck</span></a>
+      <nav class="top-nav" aria-label="On this page"><a class="top-link" href="#stories">Stories</a><a class="top-link" href="#together">Things to do</a><a class="top-link hide-sm" href="#our-story">Our story</a></nav>
     </div>
     <div class="hero-grid">
       <div>
-        <h1>Calm, cozy bedtime stories about big vehicles</h1>
-        <p class="lead">Original picture books with a gentle narrator who reads every page aloud. Made for little vehicle fans ages 2–6, and for the grown-ups tucking them in.</p>
+        <p class="hand hero-kicker">Snuggle up. Ra is warming up his engine…</p>
+        <h1>Cozy bedtime stories about big vehicles</h1>
+        <p class="lead">Little picture books about diggers, trains, boats and planes, read aloud by a gentle narrator. They began as stories a dad made up at bedtime, and now they’re here for your family too.</p>
         <div class="listen">
-          <a class="btn btn-primary btn-listen" href="read.html?s=ra&amp;play=1"><span class="listen-ico" aria-hidden="true">▶</span><span>Listen to a free bedtime story</span></a>
-          <p class="listen-meta">Starts right away: <b>Ra the Ratata and the Rocky Road</b> · about 2 minutes · no sign-up</p>
-          <p class="listen-alt"><a href="#stories">Browse all 10 stories</a><span aria-hidden="true"> · </span><a href="#lights-off">🌙 Lights-off listening</a></p>
+          <a class="btn btn-primary btn-listen" href="read.html?s=ra&amp;play=1"><span class="listen-ico" aria-hidden="true">▶</span><span>Listen to Ra’s story</span></a>
+          <p class="listen-meta"><b>Ra the Ratata and the Rocky Road</b> · about 2 minutes · free, no sign-up</p>
+          <p class="listen-alt"><a href="#stories">Or pick one of 10 stories together</a></p>
         </div>
-        <ul class="chips">
-          <li>🚜 Diggers, trains, boats &amp; planes</li>
-          <li>🔊 Every page narrated</li>
-          <li>🌙 Gentle, never scary</li>
-          <li>📱 Phone, tablet &amp; computer</li>
-        </ul>
       </div>
-      <a class="art art-play" href="read.html?s=ra&amp;play=1" aria-label="Listen to Ra the Ratata and the Rocky Road"><img src="stories/ra/cover.webp" width="1200" height="900" alt="Ra the Ratata and the Rocky Road: a smiling yellow excavator with a breaker and his vehicle friends on a rocky road"><span class="yt-play" aria-hidden="true"></span></a>
+      <a class="art art-play" href="read.html?s=ra&amp;play=1" aria-label="Listen to Ra the Ratata and the Rocky Road"><img src="stories/ra/cover.webp" width="1200" height="900" alt="Ra the Ratata and the Rocky Road: a smiling yellow excavator with a breaker and his vehicle friends on a rocky road" fetchpriority="high"><span class="yt-play" aria-hidden="true"></span></a>
     </div>
   </div>
 </header>
 
-<main class="wrap">
+<main class="wrap" id="main">
+  <section class="note" id="our-story" aria-labelledby="note-h">
+    <div class="note-paper">
+      <h2 id="note-h" class="hand">A note from the dad behind Rumbletuck</h2>
+      <p>Every night my little one asked for “one more truck story,” and every night we ran out of books. So I started making them up: a yellow digger who goes <i>ra-ta-ta-ta</i>, a night train that never hurries, a tiny dinghy who helps her big friend find his way home.</p>
+      <p>Those made-up stories became our favorite part of the day. It wasn’t really about the trucks. It was the snuggles, the giggles at the sound words, and the sleepy “again!”</p>
+      <p>Rumbletuck is how I’m sharing them with your family. Every story is gentle, about two minutes long, and ends with everyone settling down to sleep. I hope they give you a few more cozy minutes together.</p>
+      <p class="hand note-sign">Goodnight, and sweet dreams. <span aria-hidden="true">🌙</span><br>— the dad behind Rumbletuck</p>
+      <p class="note-ps"><b>P.S.</b> No ads, no accounts, no trackers. Just stories.</p>
+    </div>
+  </section>
+
+  <section class="whats-here" aria-labelledby="here-h">
+    <h2 id="here-h">What you’ll find here</h2>
+    <p class="sub">Everything below is free to enjoy tonight. More is on the way.</p>
+    <ul class="here-list">
+      <li><a href="#stories"><span class="here-ico" aria-hidden="true">📖</span><b>10 picture books</b><span>Read them together, or let the narrator read and turn the pages.</span></a></li>
+      <li><a href="#lights-off"><span class="here-ico" aria-hidden="true">🌙</span><b>Lights-off listening</b><span>The screen goes dark and the story keeps going, like an audiobook.</span></a></li>
+      <li><a href="#together"><span class="here-ico" aria-hidden="true">🧩</span><b>Things to do together</b><span>A guessing game, sound words to shout and a bedtime routine to borrow.</span></a></li>
+      <li><a href="#youtube"><span class="here-ico" aria-hidden="true">🎬</span><b>Little videos</b><span>Short animated versions of the stories on YouTube.</span></a></li>
+      <li><a href="#waitlist"><span class="here-ico" aria-hidden="true">🖍️</span><b>Coloring pages</b><span>A free printable pack of the vehicle friends. More printables are coming soon.</span></a></li>
+      <li class="here-soon"><a href="#waitlist"><span class="here-ico" aria-hidden="true">🚧</span><b>Coming next</b><span><span data-full-count>80+</span> stories: fire boats, tractors, rockets, buses and more.</span></a></li>
+    </ul>
+  </section>
+
   <section id="stories">
-    <h2>10 free bedtime stories for toddlers</h2>
-    <p class="sub">Tap a book to open it. Press play and the narrator reads each page, turning pages for you.</p>
+    <h2>Pick tonight’s story</h2>
+    <p class="sub">Tap a cover to open the book. Press play and the narrator reads each page and turns it for you, or read it aloud in your own voice.</p>
     <div class="grid" id="story-grid">
 <!-- SEO:GRID -->
       <a class="card" href="read.html?s=ra"><img src="stories/ra/thumb.webp" width="640" height="480" loading="lazy" alt="Cover of Ra the Ratata and the Rocky Road"><div class="body"><span class="tag">Excavator</span><h3>Ra the Ratata and the Rocky Road</h3><p>Ra uses his noisy breaker and help from his friends to clear the road to a new playground.</p></div></a>
@@ -76,8 +96,8 @@
       <a class="card" href="read.html?s=niko"><img src="stories/niko/thumb.webp" width="640" height="480" loading="lazy" alt="Cover of Niko the Snowplow and the Sleepy Mountain Road"><div class="body"><span class="tag">Snowplow</span><h3>Niko the Snowplow and the Sleepy Mountain Road</h3><p>Niko clears a snowy mountain road so everyone can reach the cozy lodge.</p></div></a>
 <!-- /SEO:GRID -->
     </div>
-    <div class="story-links">
-      <h3>Story pages with the full text</h3>
+    <details class="story-links">
+      <summary>Want to read the words aloud yourself? Every story has its own page with the full text.</summary>
       <p class="sub">Free bedtime stories about construction vehicles, trucks, trains, boats, planes, a helicopter and a little spaceship. Each page has the whole story to read aloud, plus the narrated version.</p>
       <ul>
 <!-- SEO:LINKS -->
@@ -93,20 +113,78 @@
       <li><a href="/story/niko-the-snowplow-and-the-sleepy-mountain-road/">Niko the Snowplow and the Sleepy Mountain Road</a> <span>· snowplow bedtime story</span></li>
 <!-- /SEO:LINKS -->
       </ul>
+    </details>
+  </section>
+
+  <section class="friends" id="friends" aria-labelledby="friends-h">
+    <h2 id="friends-h">Meet the friends</h2>
+    <p class="sub">Kind little vehicles who solve small problems with patience, teamwork and care.</p>
+    <ul class="friend-list">
+      <li class="friend friend-lead"><a href="/story/ra-the-ratata-and-the-rocky-road/"><img src="img/friends/ra.webp" width="800" height="413" loading="lazy" alt="Ra, a smiling yellow excavator, with his friends at the new playground"><span class="friend-body"><b>Ra the Ratata</b><span class="hand friend-says">“Ra-ta-ta-ta!”</span><span>A little yellow excavator with a big, noisy breaker. He knows the best jobs get done with friends.</span></span></a></li>
+      <li class="friend"><a href="/story/cedar-the-night-train-and-the-sleepy-valley/"><img src="img/friends/cedar.webp" width="400" height="387" loading="lazy" alt="Cedar, a pine-green night train"><span class="friend-body"><b>Cedar</b><span>A pine-green night train who never hurries.</span></span></a></li>
+      <li class="friend"><a href="/story/ruby-the-rescue-rover-and-the-foggy-meadow-path/"><img src="img/friends/ruby.webp" width="400" height="387" loading="lazy" alt="Ruby, a rescue rover with warm amber lights"><span class="friend-body"><b>Ruby</b><span>A rescue rover whose warm lights guide lost lambs home.</span></span></a></li>
+      <li class="friend"><a href="/story/harbor-hank-the-pilot-boat-and-the-loose-float-line/"><img src="img/friends/hank.webp" width="400" height="400" loading="lazy" alt="Harbor Hank, a pilot boat"><span class="friend-body"><b>Hank &amp; Dot</b><span>A pilot boat and his tiny dinghy pal.</span></span></a></li>
+      <li class="friend"><a href="/story/luna-the-little-spaceship-and-the-sleepy-star-garden/"><img src="img/friends/luna.webp" width="400" height="387" loading="lazy" alt="Luna, a little spaceship"><span class="friend-body"><b>Luna</b><span>A little spaceship who visits a garden of stars.</span></span></a></li>
+      <li class="friend"><a href="/story/niko-the-snowplow-and-the-sleepy-mountain-road/"><img src="img/friends/niko.webp" width="400" height="393" loading="lazy" alt="Niko, a snowplow"><span class="friend-body"><b>Niko</b><span>A snowplow who makes a safe path home.</span></span></a></li>
+      <li class="friend friend-more"><a href="#stories"><span class="hand">+4 more friends</span><span>Cody, Willa, Heli and Gavin are waiting in the stories above.</span></a></li>
+    </ul>
+  </section>
+
+  <section class="together" id="together" aria-labelledby="together-h">
+    <h2 id="together-h">Things to do together</h2>
+    <p class="sub">Little ideas for the minutes before (and after) the story.</p>
+    <div class="together-grid">
+      <div class="do do-game" id="guess">
+        <h3><span aria-hidden="true">🔍</span> Guess the vehicle</h3>
+        <p class="do-hint">Read the clue out loud. Can your little one guess who it is?</p>
+        <div class="game" data-game hidden>
+          <p class="game-clue hand" data-clue></p>
+          <div class="game-choices" data-choices role="group" aria-label="Choose a vehicle"></div>
+          <p class="game-result" data-result role="status" aria-live="polite"></p>
+          <button class="btn btn-ghost btn-sm" type="button" data-next>Next clue</button>
+        </div>
+        <noscript><p>Clue: “I go ra-ta-ta-ta and break big rocks into little ones.” Who am I? (It’s Ra the Ratata!)</p></noscript>
+      </div>
+      <div class="do">
+        <h3><span aria-hidden="true">📣</span> Say the sound words</h3>
+        <p>Every story has a sound to make together. Let your little one be the vehicle:</p>
+        <ul class="sounds">
+          <li><span class="hand">Ra-ta-ta-ta!</span> Ra’s breaker</li>
+          <li><span class="hand">Whooooosh!</span> the windy park in Gavin’s story</li>
+          <li><span class="hand">Swish, swish, swish!</span> Cody’s turning mixer</li>
+          <li><span class="hand">Scrrrape–swish!</span> Niko’s snowplow</li>
+        </ul>
+      </div>
+      <div class="do">
+        <h3><span aria-hidden="true">🖍️</span> Color the friends</h3>
+        <p>Print a page, color Ra yellow (or purple, why not?), and stick it by the bed for tomorrow’s story.</p>
+        <p><a class="do-link" href="#waitlist">Get the free coloring pack</a></p>
+      </div>
+      <div class="do do-routine">
+        <h3><span aria-hidden="true">🛁</span> A bedtime routine to borrow</h3>
+        <ol class="routine hand">
+          <li>Bath, teeth and cozy PJs</li>
+          <li>Your little one picks tonight’s vehicle</li>
+          <li>Read it together and do the sound words</li>
+          <li>“What was your favorite part?”</li>
+          <li>Lights off, and one more listen</li>
+          <li>“Goodnight, Ra. Goodnight, trucks.”</li>
+        </ol>
+      </div>
     </div>
   </section>
 
   <section id="waitlist" class="waitlist">
-    <p class="wl-kicker">Next step</p>
-    <h2>Loved tonight’s story? Get the coloring pack and new stories</h2>
-    <p class="sub">We're getting the full library ready: <span data-full-count>80+</span> stories with excavators, fire boats, tractors, rockets, buses and more. Leave a parent's email and we'll tell you when it opens, with a short bedtime story note each week until then.</p>
-    <p class="sub" style="font-weight:800;color:#ffc23d">🖍️ Join and get a free printable coloring pack: 10 vehicle friends from the stories to color.</p>
+    <p class="wl-kicker hand">Want more stories?</p>
+    <h2>Hear when new stories arrive</h2>
+    <p class="sub">We’re slowly growing the library to <span data-full-count>80+</span> stories, with excavators, fire boats, tractors, rockets, buses and more. Leave a parent’s email and we’ll send a short bedtime note each week, plus news when the full library opens. No rush: the free stories are yours either way.</p>
+    <p class="wl-gift">🖍️ As a thank-you, you’ll get a free printable coloring pack with 10 vehicle friends from the stories.</p>
     <form id="wl-form" class="wl-form" name="waitlist" method="POST" data-netlify="true" netlify-honeypot="company" novalidate>
       <input type="hidden" name="form-name" value="waitlist">
       <label class="sr" for="wl-email">Parent's email</label>
       <input id="wl-email" type="email" name="email" placeholder="Parent's email address" autocomplete="email" required>
       <input class="hp" type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true">
-      <button class="btn btn-primary" type="submit">Join the waitlist</button>
+      <button class="btn btn-primary" type="submit">Keep me posted</button>
     </form>
     <label class="wl-consent"><input type="checkbox" id="wl-consent"> I'm a parent or guardian (18+). Email me when the full library launches, plus a short weekly bedtime story note. Unsubscribe anytime.</label>
     <p class="wl-status" id="wl-status" role="status" aria-live="polite"></p>
@@ -146,18 +224,6 @@
   </section>
 <!-- /SEO:YOUTUBE -->
 
-  <section>
-    <h2>Made for bedtime</h2>
-    <div class="features">
-      <div class="feature"><b>Wind-down stories</b>Each book is about 2 minutes long and ends with the characters settling down to sleep.</div>
-      <div class="feature"><b>Kind little helpers</b>Vehicles solve small problems with patience, teamwork and care.</div>
-      <div class="feature"><b>Read-along narration</b>A warm, calm voice reads every page. Pause anytime, or turn pages yourself.</div>
-      <div class="feature"><b>Lights-off listening</b>Tap the moon and the screen goes dark while the narrator reads the whole story. Add a sleep timer, put the phone down, and let the voice do the tucking in.</div>
-      <div class="feature"><b>No ads, no accounts</b>No sign-up needed to read the samples. The stories themselves have no links to tap away to; our optional YouTube videos open on YouTube, so they're best watched with a grown-up.</div>
-    </div>
-  </section>
-
-
 <!-- SEO:FOLLOW -->
   <section class="follow" id="follow" aria-labelledby="follow-h">
     <img class="follow-moon" src="icons/icon-192.png" width="64" height="64" alt="" loading="lazy">
@@ -187,5 +253,7 @@
 <script src="stories.js"></script>
 <script src="home.js"></script>
 <script src="yt.js" defer></script>
+<script src="together.js" defer></script>
 </body>
 </html>
+

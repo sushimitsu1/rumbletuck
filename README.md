@@ -20,3 +20,6 @@ After changing files, bump `VERSION` in `sw.js` so returning visitors get the up
 - Video IDs live in `data/youtube.json` (`"<story id>": "<video ID>"`, story id = folder name in `stories/`).
 - After adding an ID: `python3 tools/build_seo.py`, bump `VERSION` in `sw.js`, commit, push. (`yt.js` also fills in a newly added ID at runtime, but rebuilding keeps the static HTML right.)
 - Embeds are click-to-play from youtube-nocookie.com; nothing loads from YouTube before a tap. The service worker only handles same-origin requests, so YouTube is never cached.
+
+## Warm home (preview branch `warm-home`)
+Founder's note, "What you'll find here", "Meet the friends" (crops of existing story pages in `img/friends/`), "Things to do together" (`together.js`: offline guess-the-vehicle game, sound words, coloring, bedtime routine), gentler waitlist copy, and a self-hosted handwritten accent font (`fonts/patrickhand.woff2`, Patrick Hand, SIL OFL, see `fonts/OFL-PatrickHand.txt`). No third-party requests, no analytics. Cache `rumbletuck-v17` (v16 is reserved for the `seo-keywords` branch).
