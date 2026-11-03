@@ -252,7 +252,7 @@ def story_page(s, stories, slugs, yt):
 <footer class="wrap">
   {footer_yt(yt)}
   <p><a href="/">All free stories</a> · <a href="/privacy.html">Privacy note</a></p>
-  <p>© {datetime.date.today().year} {NAME}. All stories and illustrations are original.</p>
+  <p>© {datetime.date.today().year} {NAME}. Stories by a dad, illustrated with help from AI.</p>
 </footer>
 <script src="/yt.js" defer></script>
 <script>if ('serviceWorker' in navigator) navigator.serviceWorker.register('/sw.js').catch(()=>{{}});</script>
