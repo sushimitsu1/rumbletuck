@@ -35,26 +35,25 @@
   <div class="wrap">
     <div class="topbar">
       <a class="brand" href="./"><span data-site-name>Rumbletuck</span><span class="badge">Free sample</span></a>
-      <a class="btn btn-ghost" href="#waitlist" style="min-height:40px;padding:0 14px;font-size:.9rem">Join waitlist</a>
+      <a class="top-link" href="#stories">All stories</a>
     </div>
     <div class="hero-grid">
       <div>
         <h1>Calm, cozy bedtime stories about big vehicles</h1>
         <p class="lead">Original picture books with a gentle narrator who reads every page aloud. Made for little vehicle fans ages 2–6, and for the grown-ups tucking them in.</p>
+        <div class="listen">
+          <a class="btn btn-primary btn-listen" href="read.html?s=ra&amp;play=1"><span class="listen-ico" aria-hidden="true">▶</span><span>Listen to a free bedtime story</span></a>
+          <p class="listen-meta">Starts right away: <b>Ra the Ratata and the Rocky Road</b> · about 2 minutes · no sign-up</p>
+          <p class="listen-alt"><a href="#stories">Browse all 10 stories</a><span aria-hidden="true"> · </span><a href="#lights-off">🌙 Lights-off listening</a></p>
+        </div>
         <ul class="chips">
           <li>🚜 Diggers, trains, boats &amp; planes</li>
           <li>🔊 Every page narrated</li>
           <li>🌙 Gentle, never scary</li>
-          <li>🌑 Lights-off mode: just the story, no screen</li>
           <li>📱 Phone, tablet &amp; computer</li>
         </ul>
-        <div class="cta-row">
-          <a class="btn btn-primary" href="#stories">Read a free story</a>
-          <a class="btn btn-ghost" href="#waitlist">Get the full library</a>
-        </div>
-        <p class="hero-yt"><a class="btn btn-yt" href="https://www.youtube.com/@rumbletuckstories?sub_confirmation=1" target="_blank" rel="noopener">▶ Subscribe on YouTube</a> <span>New animated Shorts of the stories</span></p>
       </div>
-      <div class="art"><img src="stories/cedar/cover.webp" width="1200" height="900" alt="Cedar the Night Train and the Sleepy Valley: a smiling green steam train pulling glowing carriages past a station at dusk"></div>
+      <a class="art art-play" href="read.html?s=ra&amp;play=1" aria-label="Listen to Ra the Ratata and the Rocky Road"><img src="stories/ra/cover.webp" width="1200" height="900" alt="Ra the Ratata and the Rocky Road: a smiling yellow excavator with a breaker and his vehicle friends on a rocky road"><span class="yt-play" aria-hidden="true"></span></a>
     </div>
   </div>
 </header>
@@ -97,6 +96,49 @@
     </div>
   </section>
 
+  <section id="waitlist" class="waitlist">
+    <p class="wl-kicker">Next step</p>
+    <h2>Loved tonight’s story? Get the coloring pack and new stories</h2>
+    <p class="sub">We're getting the full library ready: <span data-full-count>80+</span> stories with excavators, fire boats, tractors, rockets, buses and more. Leave a parent's email and we'll tell you when it opens, with a short bedtime story note each week until then.</p>
+    <p class="sub" style="font-weight:800;color:#ffc23d">🖍️ Join and get a free printable coloring pack: 10 vehicle friends from the stories to color.</p>
+    <form id="wl-form" class="wl-form" name="waitlist" method="POST" data-netlify="true" netlify-honeypot="company" novalidate>
+      <input type="hidden" name="form-name" value="waitlist">
+      <label class="sr" for="wl-email">Parent's email</label>
+      <input id="wl-email" type="email" name="email" placeholder="Parent's email address" autocomplete="email" required>
+      <input class="hp" type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <button class="btn btn-primary" type="submit">Join the waitlist</button>
+    </form>
+    <label class="wl-consent"><input type="checkbox" id="wl-consent"> I'm a parent or guardian (18+). Email me when the full library launches, plus a short weekly bedtime story note. Unsubscribe anytime.</label>
+    <p class="wl-status" id="wl-status" role="status" aria-live="polite"></p>
+  </section>
+
+  <section class="lights" id="lights-off" aria-labelledby="lights-h">
+    <div class="lights-copy">
+      <p class="wl-kicker">For grown-ups at bedtime</p>
+      <h2 id="lights-h">Lights off. Just listen.</h2>
+      <p class="sub">Lights-off mode turns a story into a calm audio bedtime story, with no pictures and no screen time.</p>
+      <ol class="lights-steps">
+        <li><b>Press play.</b> Pick any story, or start one below.</li>
+        <li><b>Tap the moon.</b> The screen goes nearly black, with no pictures.</li>
+        <li><b>Put the phone down.</b> The soft narration reads the whole story. Add a sleep timer if you like.</li>
+      </ol>
+      <div class="cta-row">
+        <a class="btn btn-lights" href="read.html?s=cedar&amp;lo=1"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path fill="currentColor" d="M20.5 14.6A8.5 8.5 0 0 1 9.4 3.5a8.5 8.5 0 1 0 11.1 11.1z"/></svg>Start a story with the lights off</a>
+      </div>
+      <p class="lights-note">Starts <b>Cedar the Night Train</b>. Tap ✕ anytime to see the pictures again.</p>
+    </div>
+    <div class="phone" aria-hidden="true">
+      <div class="phone-screen">
+        <svg class="lo-moon" viewBox="0 0 24 24" width="22" height="22" focusable="false"><path fill="currentColor" d="M20.5 14.6A8.5 8.5 0 0 1 9.4 3.5a8.5 8.5 0 1 0 11.1 11.1z"/></svg>
+        <p class="lo-title">Cedar the Night Train and the Sleepy Valley</p>
+        <p class="lo-status">Playing</p>
+        <p class="lo-sub">Page 3 of 15 · 14 min left</p>
+        <div class="lo-ctrls"><span class="lo-btn">❚❚</span><span class="lo-btn">✕</span></div>
+        <div class="phone-timer"><span>Off</span><span>End of story</span><span class="on">15 min</span><span>30 min</span></div>
+      </div>
+    </div>
+  </section>
+
 <!-- SEO:YOUTUBE -->
   <section class="yt-block yt-home" id="youtube">
     <div class="yt-frame"><button class="yt-poster" type="button" data-yt="lnoPBUjI6tE" data-title="Ra – Rumbletuck Short" aria-label="Play the Ra video"><img src="stories/ra/thumb.webp" alt="" width="640" height="480" loading="lazy"><span class="yt-pill">Short</span><span class="yt-play" aria-hidden="true"></span></button></div>
@@ -115,20 +157,6 @@
     </div>
   </section>
 
-  <section id="waitlist" class="waitlist">
-    <h2>Join the waitlist for the full library (<span data-full-count>80+</span> stories)</h2>
-    <p class="sub">We're getting the full collection ready: excavators, fire boats, tractors, rockets, buses and more. Leave a parent's email and we'll tell you when it opens, with a short bedtime story note each week until then.</p>
-    <p class="sub" style="font-weight:800;color:#ffc23d">🖍️ Join and get a free printable coloring pack: 10 vehicle friends from the stories to color.</p>
-    <form id="wl-form" class="wl-form" name="waitlist" method="POST" data-netlify="true" netlify-honeypot="company" novalidate>
-      <input type="hidden" name="form-name" value="waitlist">
-      <label class="sr" for="wl-email">Parent's email</label>
-      <input id="wl-email" type="email" name="email" placeholder="Parent's email address" autocomplete="email" required>
-      <input class="hp" type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true">
-      <button class="btn btn-primary" type="submit">Join the waitlist</button>
-    </form>
-    <label class="wl-consent"><input type="checkbox" id="wl-consent"> I'm a parent or guardian (18+). Email me when the full library launches, plus a short weekly bedtime story note. Unsubscribe anytime.</label>
-    <p class="wl-status" id="wl-status" role="status" aria-live="polite"></p>
-  </section>
 
 <!-- SEO:FOLLOW -->
   <section class="follow" id="follow" aria-labelledby="follow-h">

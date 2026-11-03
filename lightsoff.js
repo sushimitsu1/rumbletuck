@@ -207,4 +207,11 @@
     }
   });
   syncTimerUI();
+  // ?lo=1 (homepage "Start a story with the lights off"): open straight into the dark screen.
+  // If the browser needs a tap before sound, the status line says "Tap ▶ to start the story."
+  const qs = new URLSearchParams(location.search);
+  if (qs.get('lo') === '1') {
+    qs.delete('lo'); history.replaceState(null, '', `${location.pathname}?${qs}${location.hash}`);
+    open();
+  }
 })();

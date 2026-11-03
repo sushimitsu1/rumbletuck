@@ -47,7 +47,7 @@
     clearTimeout(advanceTimer);
     audio.src = audSrc(page);
     audio.currentTime = 0;
-    audio.play().catch(() => { readAlong = false; setPlayLabel(); });
+    audio.play().catch(err => { if (err && err.name === 'AbortError') return; readAlong = false; setPlayLabel(); playBtn.classList.add('nudge'); });
   }
   function go(p, {auto = false} = {}){
     if (p < -1) return;
@@ -98,6 +98,14 @@
     goTo(p){ readAlong = false; stopAudio(); page = Math.max(-1, Math.min(story.pages - 1, p)); render(); }
   };
   render();
+  // ?play=1 (homepage "Listen" button): start the narration right away. If the browser blocks
+  // sound without a tap here, the page-1 picture shows and the play button gently pulses.
+  const qs = new URLSearchParams(location.search);
+  if (qs.get('play') === '1' && qs.get('lo') !== '1') {
+    qs.delete('play'); history.replaceState(null, '', `${location.pathname}?${qs}${location.hash}`);
+    readAlong = true; go(0);
+  }
+  playBtn.addEventListener('click', () => playBtn.classList.remove('nudge'));
 })();
 
 if ('serviceWorker' in navigator && location.protocol !== 'file:') navigator.serviceWorker.register('sw.js').catch(()=>{});

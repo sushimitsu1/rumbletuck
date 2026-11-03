@@ -178,3 +178,53 @@ body.lo-on .r-shell{visibility:hidden}
 .footer-social a{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:50%;background:#fff;color:var(--night);box-shadow:0 2px 8px rgba(36,48,74,.08)}
 .footer-social a:hover{color:var(--sky)}
 @media(max-width:440px){.follow-list li{flex:1 1 calc(50% - 5px);min-width:0}.follow-link{padding:0 10px}.follow-list li:first-child{flex-basis:100%}}
+
+/* Listen first (hero): one big "Listen" action that opens Ra in the reader and starts the narration */
+.top-link{color:#fff;font-weight:800;text-decoration:none;opacity:.9;padding:10px 4px;font-size:.95rem}
+.top-link:hover,.top-link:focus-visible{opacity:1;text-decoration:underline}
+.listen{margin:4px 0 20px}
+.btn-listen{min-height:64px;padding:0 28px 0 12px;font-size:1.18rem;gap:12px;box-shadow:0 5px 0 #d99a12,0 10px 26px rgba(255,194,61,.35)}
+.btn-listen:active{box-shadow:0 2px 0 #d99a12}
+.listen-ico{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:50%;background:var(--night);color:var(--sun);font-size:1rem;padding-left:3px;flex:none}
+.btn-listen:focus-visible,.btn-lights:focus-visible,.art-play:focus-visible{outline:3px solid #fff;outline-offset:3px}
+.listen-meta{margin:10px 0 0;font-size:.92rem;opacity:.92}
+.listen-alt{margin:8px 0 0;font-size:.98rem}
+.listen-alt a{color:#fff;font-weight:800}
+.listen-alt span{opacity:.6}
+.art-play{position:relative;display:block}
+.art-play .yt-play{left:22px;top:auto;bottom:22px;margin:0;background:var(--sun)}
+.art-play .yt-play::after{border-left-color:var(--night)}
+.art-play:hover .yt-play{transform:scale(1.08)}
+@media(max-width:440px){.btn-listen{width:100%;font-size:1.08rem;padding-right:16px}}
+/* Reader: gentle nudge when the browser blocked the automatic start */
+.r-play.nudge{animation:r-nudge 1.6s ease-in-out 4}
+@keyframes r-nudge{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
+@media (prefers-reduced-motion:reduce){.r-play.nudge{animation:none}}
+
+/* Waitlist as the next step */
+.wl-kicker{margin:0 0 2px;font-size:.8rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#ffc23d}
+
+/* Lights-off demo section (homepage) */
+.lights{display:grid;gap:26px;align-items:center;background:#0b0e24;color:#e9e3d6;border-radius:28px;padding:28px 22px;margin:30px 0 10px}
+.lights h2{color:#fff}
+.lights .sub{color:#b9b3a6}
+.lights .wl-kicker{color:#d8b27a}
+.lights-steps{list-style:none;counter-reset:st;margin:0 0 20px;padding:0;display:grid;gap:10px}
+.lights-steps li{counter-increment:st;position:relative;padding:2px 0 2px 46px;min-height:34px}
+.lights-steps li::before{content:counter(st);position:absolute;left:0;top:0;width:34px;height:34px;border-radius:50%;background:#1d160e;border:1px solid #4a3a26;color:#d8b27a;font-weight:800;display:flex;align-items:center;justify-content:center}
+.lights-steps b{color:#fff}
+.btn-lights{background:#2a2140;color:#ffd88a;border:2px solid #5b4a7a;box-shadow:0 4px 0 #120e1f}
+.btn-lights:active{transform:translateY(2px);box-shadow:0 2px 0 #120e1f}
+.lights-note{margin:12px 0 0;font-size:.88rem;color:#a39d90}
+.lights-note b{color:#d8cfbf}
+.phone{width:200px;margin:0 auto;padding:12px;border-radius:38px;background:#1b1e33;box-shadow:0 0 0 2px #2c3150,0 18px 40px rgba(0,0,0,.5)}
+.phone-screen{aspect-ratio:9/17;border-radius:28px;background:#000;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:18px 14px;color:#6e5638}
+.phone-screen .lo-title{font-size:.84rem}
+.phone-screen .lo-status{font-size:.76rem}
+.phone-screen .lo-sub{font-size:.7rem;margin-bottom:16px}
+.phone-screen .lo-ctrls{gap:16px;margin-bottom:16px}
+.phone-screen .lo-btn{width:44px;height:44px;font-size:.9rem;cursor:default}
+.phone-timer{display:flex;flex-wrap:wrap;justify-content:center;gap:4px}
+.phone-timer span{font-size:.62rem;color:#6a5336;border:1px solid #2c2318;border-radius:99px;padding:3px 7px}
+.phone-timer .on{background:#1d160e;color:#8c6d45;border-color:#4a3a26}
+@media(min-width:760px){.lights{grid-template-columns:1fr 260px;padding:34px 40px}.phone{width:230px}}
