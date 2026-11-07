@@ -9,7 +9,10 @@ It (re)writes:
   og/<id>.jpg               1200x630 share images cropped from each cover
   sitemap.xml, robots.txt
   index.html                the blocks between the <!-- SEO:... --> markers
-                            (static story grid, story links, JSON-LD, YouTube block)
+                            (static story grid, JSON-LD, YouTube block).
+                            Full-text links live on each homepage story card.
+                            The old SEO:LINKS block is rewritten only if those
+                            markers are still present.
 YouTube Shorts come from data/youtube.json (story id -> video ID). Stories without an ID
 get a Subscribe-only block; yt.js also fills in IDs added after the last build.
 Then bump VERSION in sw.js so returning visitors get the new files.
@@ -158,6 +161,18 @@ def card(s, href):
             f'<img src="/stories/{s["id"]}/thumb.webp" width="640" height="480" loading="lazy" alt="Cover of {esc(s["title"])}">'
             f'<div class="body"><span class="tag">{esc(s["vehicle"])}</span><h3>{esc(s["title"])}</h3><p>{esc(s["description"])}</p></div></a>')
 
+def home_card(s, slug):
+    """Homepage library card: the reader, the old character line, and the full text."""
+    who = s.get('character')
+    who_html = f'<p class="card-who">{esc(who)}</p>' if who else ''
+    return (f'<article class="card">'
+            f'<a class="card-main" href="read.html?s={s["id"]}" aria-label="Read {esc(s["title"])}">'
+            f'<img src="stories/{s["id"]}/thumb.webp" width="640" height="480" loading="lazy" alt="Cover of {esc(s["title"])}">'
+            f'<div class="body"><span class="tag">{esc(s["vehicle"])}</span><h3>{esc(s["title"])}</h3>'
+            f'<p>{esc(s["description"])}</p>{who_html}</div></a>'
+            f'<div class="card-actions"><a href="read.html?s={s["id"]}">Read aloud</a>'
+            f'<a href="/story/{slug}/">Full text</a></div></article>')
+
 def story_page(s, stories, slugs, yt):
     sid, slug = s['id'], slugs[s['id']]
     url = f'{SITE}/story/{slug}/'
@@ -276,14 +291,15 @@ def main():
 
     # Home page blocks
     p = os.path.join(ROOT, 'index.html'); src = open(p, encoding='utf-8').read()
-    grid = '\n'.join('      ' + card(s, f'read.html?s={s["id"]}').replace('src="/stories/', 'src="stories/') for s in stories)
+    grid = '\n'.join('      ' + home_card(s, slugs[s['id']]) for s in stories)
     links = '\n'.join(f'      <li><a href="/story/{slugs[s["id"]]}/">{esc(s["title"])}</a> <span>· {esc(s["vehicle"].lower())} bedtime story</span></li>' for s in stories)
     home_ld = {'@context': 'https://schema.org', '@graph': [WEBSITE, ORG,
         {'@type': 'ItemList', 'name': 'Free bedtime stories about big vehicles', 'itemListElement': [
             {'@type': 'ListItem', 'position': i + 1, 'url': f'{SITE}/story/{slugs[s["id"]]}/', 'item': book_ld(s, f'{SITE}/story/{slugs[s["id"]]}/')}
             for i, s in enumerate(stories)]}]}
     src = replace_block(src, 'GRID', grid)
-    src = replace_block(src, 'LINKS', links)
+    if '<!-- SEO:LINKS -->' in src:
+        src = replace_block(src, 'LINKS', links)
     src = replace_block(src, 'JSONLD', ld_script(home_ld))
     src = replace_block(src, 'YOUTUBE', yt_home_block(stories, yt))
     src = replace_block(src, 'FOOTERYT', footer_yt(yt))

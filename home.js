@@ -6,12 +6,13 @@
 
   // Story grid
   const grid = document.getElementById('story-grid');
+  const esc = t => String(t == null ? '' : t).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const slug = title => title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
   // index.html ships a prerendered grid (tools/build_seo.py); only render here if it is missing.
-  if (!grid.querySelector('.card')) grid.innerHTML = (window.STORIES || []).map(s => `
-    <a class="card" href="read.html?s=${encodeURIComponent(s.id)}">
-      <img src="stories/${s.id}/thumb.webp" width="640" height="480" loading="lazy" alt="Cover of ${s.title.replace(/"/g,'&quot;')}">
-      <div class="body"><span class="tag">${s.vehicle}</span><h3>${s.title}</h3><p>${s.description}</p></div>
-    </a>`).join('');
+  if (grid && !grid.querySelector('.card')) grid.innerHTML = (window.STORIES || []).map(s => {
+    const who = s.character ? `<p class="card-who">${esc(s.character)}</p>` : '';
+    return `<article class="card"><a class="card-main" href="read.html?s=${encodeURIComponent(s.id)}" aria-label="Read ${esc(s.title)}"><img src="stories/${s.id}/thumb.webp" width="640" height="480" loading="lazy" alt="Cover of ${esc(s.title)}"><div class="body"><span class="tag">${esc(s.vehicle)}</span><h3>${esc(s.title)}</h3><p>${esc(s.description)}</p>${who}</div></a><div class="card-actions"><a href="read.html?s=${encodeURIComponent(s.id)}">Read aloud</a><a href="/story/${slug(s.title)}/">Full text</a></div></article>`;
+  }).join('');
 
   // Waitlist
   const wl = cfg.waitlist || {};

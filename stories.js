@@ -5,6 +5,7 @@ window.STORIES = [
   "title": "Ra the Ratata and the Rocky Road",
   "vehicle": "Excavator",
   "description": "Ra uses his noisy breaker and help from his friends to clear the road to a new playground.",
+  "character": "A little yellow excavator with a big, noisy breaker. He knows the best jobs get done with friends.",
   "pages": 15,
   "text": [
    "Ra was a little yellow excavator who worked at the Sunny Hill Construction Yard. Everyone called him Ra the Ratata.",
@@ -53,6 +54,7 @@ window.STORIES = [
   "title": "Ruby the Rescue Rover and the Foggy Meadow Path",
   "vehicle": "Rescue Rover",
   "description": "On a foggy evening, Ruby's warm lights guide a little lost lamb home to Mama.",
+  "character": "A rescue rover whose warm lights guide lost lambs home.",
   "pages": 15,
   "text": [
    "One soft evening, Ruby the Rescue Rover rolled into Meadow Hollow. Her amber roof lights glowed warm.",
@@ -77,6 +79,7 @@ window.STORIES = [
   "title": "Harbor Hank the Pilot Boat and the Loose Float Line",
   "vehicle": "Pilot Boat",
   "description": "Hank and tiny Dot the dinghy bring a drifting dock float safely home.",
+  "character": "A pilot boat and his tiny dinghy pal.",
   "pages": 15,
   "text": [
    "One calm evening, Harbor Hank the Pilot Boat floated in Moonlit Harbor. His pale yellow cabin light glowed soft.",
@@ -101,6 +104,7 @@ window.STORIES = [
   "title": "Cedar the Night Train and the Sleepy Valley",
   "vehicle": "Steam Train",
   "description": "A pine-green night train carries sleepy passengers through a moonlit valley.",
+  "character": "A pine-green night train who never hurries.",
   "pages": 15,
   "text": [
    "Evening sky turned lavender while Cedar the night train waited at the little station.",
@@ -197,6 +201,7 @@ window.STORIES = [
   "title": "Luna the Little Spaceship and the Sleepy Star Garden",
   "vehicle": "Spaceship",
   "description": "Luna and a tiny star named Nib visit a glowing Star Garden and drift off to sleep.",
+  "character": "A little spaceship who visits a garden of stars.",
   "pages": 15,
   "text": [
    "In the quiet evening, far above the sleeping Earth, a little spaceship named Luna floated among the stars.",
@@ -221,6 +226,7 @@ window.STORIES = [
   "title": "Niko the Snowplow and the Sleepy Mountain Road",
   "vehicle": "Snowplow",
   "description": "Niko clears a snowy mountain road so everyone can reach the cozy lodge.",
+  "character": "A snowplow who makes a safe path home.",
   "pages": 15,
   "text": [
    "Snowy evening came to Pine Peak Road. Niko the Snowplow blinked his lights and smiled.",
